@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "grita-app",
-    "slug": "grita-app",
+    "name": "lista-compras",
+    "slug": "lista-compras",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "gritaapp",
+    "scheme": "listacompras",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
