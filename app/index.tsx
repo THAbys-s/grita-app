@@ -1,131 +1,62 @@
+import CampoParaAgregarProducto from "@/components/CampoParaAgregarProducto";
+import TarjetaParaItemDeCompra from "@/components/ui/TarjetaParaItemDeCompra";
+import { textos } from "@/constants/strings";
+import { tema } from "@/constants/theme";
+import useListaDeCompras from "@/hooks/useListaDeCompras";
 import { useState } from "react";
-import {
-    FlatList,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
-} from "react-native";
-
-type Item = {
-  id: string;
-  name: string;
-  done: boolean;
-};
+import { FlatList, Text, View } from "react-native";
+import { PaperProvider } from "react-native-paper";
 
 export default function App() {
-  const [items, setItems] = useState<Item[]>([]);
   const [text, setText] = useState("");
+  const { items, AgregarItem, AlternarItem, EliminarItem } =
+    useListaDeCompras();
 
-  const AgregarItem = () => {
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    setItems((prev) => [
-      ...prev,
-      { id: String(Date.now()), name: trimmed, done: false },
-    ]);
-    setText("");
+  const handleSubmit = () => {
+    AgregarItem(text); // Envia el texto directo al hook
+    setText(""); // Limpia el input a apretar el boton de "Agregar".
   };
-
-  const AlternarItem = (id: string) => {
-    setItems((prev) =>
-      prev.map((it) => (it.id === id ? { ...it, done: !it.done } : it)),
-    );
-  };
-
-  const EliminarItem = (id: string) => {
-    setItems((prev) => prev.filter((it) => it.id !== id));
-  };
-
-  const TarjetaParaRenderizarItem = ({ item }: { item: Item }) => (
-    <Pressable
-      onPress={() => AlternarItem(item.id)}
-      onLongPress={() => EliminarItem(item.id)}
-      style={styles.row}
-    >
-      <Text style={[styles.rowText, item.done && styles.done]}>
-        {item.name}
-      </Text>
-      <Text
-        style={[styles.pill, item.done ? styles.pillDone : styles.pillTodo]}
-      >
-        {item.done ? "✔" : "•"}
-      </Text>
-    </Pressable>
-  );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>🛒 Lista de Compras</Text>
-      <View style={styles.inputRow}>
-        <TextInput
+    <PaperProvider theme={tema}>
+      <View
+        style={{
+          flex: 1,
+          padding: 16,
+          backgroundColor: tema.colors.background,
+        }}
+      >
+        <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 16 }}>
+          {textos.titulo}
+        </Text>
+        <CampoParaAgregarProducto
           value={text}
-          onChangeText={setText}
-          placeholder="Agregar producto (ej: Leche)"
-          style={styles.input}
-          returnKeyType="done"
-          onSubmitEditing={AgregarItem}
+          onChange={setText}
+          onSubmit={handleSubmit}
         />
-        <Pressable style={styles.addBtn} onPress={AgregarItem}>
-          <Text style={styles.addTxt}>Agregar</Text>
-        </Pressable>
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TarjetaParaItemDeCompra
+              item={item}
+              onToggle={AlternarItem}
+              onEliminar={EliminarItem}
+            />
+          )}
+          ListEmptyComponent={
+            <Text
+              style={{
+                textAlign: "center",
+                marginTop: 20,
+                color: tema.colors.textoSutil,
+              }}
+            >
+              {textos.listaVacia}
+            </Text>
+          }
+        />
       </View>
-      <FlatList
-        data={items}
-        keyExtractor={(it) => it.id}
-        renderItem={TarjetaParaRenderizarItem}
-        ListEmptyComponent={
-          <Text style={styles.empty}>
-            Sin productos. ¡Agregá el primero! 😊
-          </Text>
-        }
-        ItemSeparatorComponent={() => <View style={styles.sep} />}
-        contentContainerStyle={{ paddingBottom: 32 }}
-      />
-    </View>
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, gap: 12, backgroundColor: "#fff" },
-  title: { fontSize: 24, fontWeight: "bold", marginTop: 12 },
-  inputRow: { flexDirection: "row", gap: 8 },
-  input: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    height: 44,
-  },
-  addBtn: {
-    backgroundColor: "#1e90ff",
-    paddingHorizontal: 14,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  addTxt: { color: "#fff", fontWeight: "600" },
-  row: {
-    flexDirection: "row",
-    paddingVertical: 12,
-    paddingHorizontal: 8,
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  rowText: { fontSize: 16 },
-  done: { textDecorationLine: "line-through", color: "#999" },
-  pill: {
-    minWidth: 28,
-    height: 28,
-    borderRadius: 14,
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontWeight: "700",
-  },
-  pillTodo: { backgroundColor: "#eee", color: "#666" },
-  pillDone: { backgroundColor: "#2ecc71", color: "#fff" },
-  sep: { height: 1, backgroundColor: "#eee" },
-  empty: { textAlign: "center", color: "#777", marginTop: 24 },
-});
