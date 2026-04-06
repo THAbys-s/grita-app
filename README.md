@@ -10,6 +10,7 @@ Esta es una aplicación hecha con React Native que cumple la función de ser una
 
 ```bash
 npm install
+npm install react-native-paper
 ```
 
 2. Inicia por primera vez la app.
