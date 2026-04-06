@@ -1,92 +1,67 @@
-# 🛒 Shopping List App
+# Lista de Compras.
 
-This is a React Native app built with Expo for managing a simple and efficient shopping list.
+Esta es una aplicación hecha con React Native que cumple la función de ser una simple y eficiente lista de compras.
 
 ---
 
-## Get started
+## Primeros Pasos.
 
-1. Install dependencies
+1. Instala las dependencias necesarias.
 
 ```bash
 npm install
 ```
 
-2. Start the app
+2. Inicia por primera vez la app.
 
 ```bash
 npx expo start
 ```
 
-In the output, you'll find options to open the app in:
+En la terminal veras distintas opciones para abrir la app en:
 
-- Android emulator
-- iOS simulator
+- Emulador de Android.
+- Simulador de iOS.
 - Expo Go (https://expo.dev/go)
 
 ---
 
-## About the app
+## Acerca de la App.
 
-This application allows users to manage a shopping list in a simple way:
+La principal función de la aplicación resulta en ser una lista de compras eficiente y accesible.
 
-- Add new products
-- Mark items as completed
-- Delete items
-- View an empty state when no items are present
+- Agrega nuevos productos.
+- Marca cada item como completo.
+- Borra cada item.
 
-The app focuses on a clean UI and minimal interaction friction.
-
----
-
-## Project structure
-
-Main parts of the app:
-
-- CampoParaAgregarProducto → input field to add items
-- TarjetaParaItemDeCompra → UI for each item
-- useListaDeCompras → custom hook handling all logic
-- theme and strings → centralized styling and text
+Es así, como esta aplicación se centra en tener una UI limpia e interactiva.
 
 ---
 
-## Development
+## Estructura del Proyecto.
 
-You can start developing by editing the main file:
+Partes importantes de la app:
 
-App.js / App.tsx
-
-The core logic is handled through a custom hook, making the UI components reusable and clean.
-
----
-
-## Features
-
-- Add items to the list
-- Toggle item completion
-- Remove items
-- Themed UI using React Native Paper
+- CampoParaAgregarProducto -> input para agregar items.
+- TarjetaParaItemDeCompra -> Interfaz para cada item.
+- useListaDeCompras -> Hook personalizado que contiene la lógica de cada item.
+- theme y strings -> Constantes que almacenan estilos y strings reutilizables.
 
 ---
 
-## Limitations
+## Desarrollo.
 
-- No persistent storage (data resets on reload)
-- No item editing
-- No cloud sync
+Puedes editar la aplicación a través del archivo "index.tsx":
 
----
-
-## Learn more
-
-- https://docs.expo.dev/
-- https://reactnative.dev/
+La lógica principal del proyecto esta separada en distintos hooks, con el principal próposito de optimizar el uso de componentes reutilizables.
 
 ---
 
-## Future improvements
+## Dependencias.
 
-- Local storage (AsyncStorage)
-- Item editing
-- Multiple lists
-- Better UX feedback (animations, gestures)
+- React Native Paper (Botones y elementos de UI reutilizables)
+
+## Limitaciones Actuales.
+
+- No mantiene una memoria de la lista. (Olvida todo al cerrar la App)
+- No permite editar items ya creados.
