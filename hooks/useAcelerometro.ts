@@ -1,44 +1,40 @@
 import { Accelerometer } from "expo-sensors";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export function useMovimiento() {
+export default function useMovimiento() {
   const [estaCaminando, setEstaCaminando] = useState(false);
+  const [pasos, setPasos] = useState(0);
+
+  const ultimoMovimiento = useRef(0);
 
   useEffect(() => {
-    let ultimaMagnitud = 0;
-    let movimientoAcumulado = 0;
-    let intervalo;
-    let sub;
+    Accelerometer.setUpdateInterval(200);
 
-    Accelerometer.setUpdateInterval(200); // cada 200ms
+    const sub = Accelerometer.addListener((data) => {
+      const { x, y, z } = data;
 
-    sub = Accelerometer.addListener(({ x, y, z }) => {
+      // magnitud del movimiento
       const magnitud = Math.sqrt(x * x + y * y + z * z);
-      const delta = Math.abs(magnitud - ultimaMagnitud);
 
-      ultimaMagnitud = magnitud;
-
-      // acumulamos cambios reales de movimiento
-      if (delta > 0.2) {
-        movimientoAcumulado += delta;
+      // Rango de Detección
+      if (magnitud > 1.5) {
+        setPasos((prev) => prev + 1);
+        setEstaCaminando(true);
+        ultimoMovimiento.current = Date.now();
       }
     });
 
-    intervalo = setInterval(() => {
-      if (movimientoAcumulado > 1) {
-        setEstaCaminando(true);
-      } else {
+    const intervalo = setInterval(() => {
+      if (Date.now() - ultimoMovimiento.current > 800) {
         setEstaCaminando(false);
       }
-
-      movimientoAcumulado = 0;
-    }, 2000);
+    }, 300);
 
     return () => {
-      sub?.remove();
+      sub.remove();
       clearInterval(intervalo);
     };
   }, []);
 
-  return { estaCaminando };
+  return { estaCaminando, pasos };
 }
