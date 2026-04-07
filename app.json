@@ -12,7 +12,9 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["android.permission.ACTIVITY_RECOGNITION"],
+      "permissions": [
+        "android.permission.ACTIVITY_RECOGNITION"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -41,12 +43,7 @@
           }
         }
       ],
-      [
-        "@reactvision/react-viro",
-        {
-          "android": { "xRMode": "AR" }
-        }
-      ]
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true,
