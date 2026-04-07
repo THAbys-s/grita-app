@@ -17,7 +17,7 @@ export default function useAcelerometro() {
       const magnitud = Math.sqrt(x * x + y * y + z * z);
 
       // Rango de Detección
-      if (magnitud > 1.5) {
+      if (magnitud > 1.2) {
         setPasos((prev) => prev + 1);
         setEstaCaminando(true);
         ultimoMovimiento.current = Date.now();
