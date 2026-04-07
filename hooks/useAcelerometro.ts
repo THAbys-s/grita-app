@@ -1,7 +1,7 @@
 import { Accelerometer } from "expo-sensors";
 import { useEffect, useRef, useState } from "react";
 
-export default function useMovimiento() {
+export default function useAcelerometro() {
   const [estaCaminando, setEstaCaminando] = useState(false);
   const [pasos, setPasos] = useState(0);
 
