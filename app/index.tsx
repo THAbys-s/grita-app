@@ -109,7 +109,10 @@ export default function App() {
             fontFamily: "Determination",
           }}
         >
-          Comenzar
+          * Antes de darle a continuar * Esta es una obra interactiva basada en
+          Grita, siguiendo la tématica del juego Undertale. Como en la obra
+          original, debes esforzarte para obtener la poesía. Al tocar "Comenzar"
+          el celular empezará a contar tus pasos, debes CAMINAR.
         </Text>
       </TouchableOpacity>
     );
