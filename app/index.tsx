@@ -4,7 +4,6 @@ import { Animated, Image, Pressable, Text, View } from "react-native";
 import useAcelerometro from "../hooks/useAcelerometro";
 
 const fondo = require("../assets/background/background_echo_flower.jpg");
-const imagenFinal = require("../assets/images/sans_end.png");
 const DtHeart = require("../assets/images/Undertale-heart.png");
 
 export default function App() {
