@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "lista-compras",
-    "slug": "lista-compras",
+    "name": "Camina-Undertale",
+    "slug": "Camina-Undertale",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "listacompras",
+    "scheme": "caminaundertale",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -52,8 +52,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "17b1025a-2c00-49cb-8558-933323cdfa52"
+        "projectId": "6bd2b3a0-83ec-486e-8beb-17dd048a82bd"
       }
-    }
+    },
+    "owner": "thabys-s"
   }
 }
