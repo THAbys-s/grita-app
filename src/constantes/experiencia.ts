@@ -1,0 +1,55 @@
+// Constantes de configuración de la experiencia
+
+export const CONSTANTES_EXPERIENCIA = {
+  // Acelerómetro
+  INTERVALO_ACELEROMETRO: 200,
+  UMBRAL_MAGNITUD: 1.2,
+  TIEMPO_INACTIVIDAD: 800,
+  INTERVALO_VERIFICACION: 300,
+
+  // Animaciones
+  VELOCIDAD_DIALOGO: 50,
+  DURACION_DIALOGO: 5000,
+  DURACION_FADE_DIALOGO: 1000,
+  DURACION_OVERLAY: 1000,
+  DURACION_FADE_PANTALLA: 2000,
+  DURACION_FADE_IMAGEN: 2000,
+
+  // Pasos hito
+  PASOS_FINAL: 25,
+  PASOS_DESVANECIMIENTO: 100,
+
+  // Estilos
+  DELAY_LONG_PRESS: 500,
+  PADDING_DEFECTO: 20,
+  PADDING_HORIZONTAL_DIALOGO: 20,
+
+  // Colores
+  COLORES: {
+    AMARILLO: "yellow",
+    BLANCO: "white",
+    NEGRO: "black",
+    GRIS: "gray",
+    TRANSPARENTE_OSCURO: "rgba(0,0,0,0.8)",
+  },
+
+  // Fuentes
+  FUENTES: {
+    DETERMINATION: "Determination",
+  },
+
+  // Tamaños de fuente
+  TAMAÑOS_FUENTE: {
+    TITULO_INTRO: 50,
+    INSTRUCCION: 22,
+    INSTRUCCION_DESTACADA: 30,
+    CREDITOS: 15,
+    BOTON: 24,
+    CONFIRMACION_TITULO: 22,
+    CONFIRMACION_OPCION: 22,
+    TITULO_FINAL: 32,
+    MENSAJE_FINAL: 22,
+    DIALOGO_ASTERISCO: 26,
+    DIALOGO_TEXTO: 22,
+  },
+};
